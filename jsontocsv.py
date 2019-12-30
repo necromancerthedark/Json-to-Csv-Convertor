@@ -2,13 +2,15 @@ import json
 import csv
 import io
 
-json_file = io.open('quotes.json', 'r+', encoding="utf-8")
-csv_file = io.open('quotes.csv', 'w+', encoding="utf-8")
+filepath = input("Enter Path to your Json File: ")
+csv_filepath = input("Enter Name of your Csv File:")
+csv_filepath_format = csv_filepath + '.csv'
+
+json_file = io.open(filepath, 'r+', encoding="utf-8")
+csv_file = io.open(csv_filepath_format, 'w+', encoding="utf-8")
 
 json_parsed = json.loads(json_file.read())
 csvwriter = csv.writer(csv_file)
-
-print(json_parsed[0]['text'])
 
 for emp in json_parsed:
     csvwriter.writerow(emp.values())
